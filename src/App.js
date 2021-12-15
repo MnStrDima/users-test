@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Container } from '@material-ui/core';
+import UsersTable from './components/UsersTable/UsersTable';
+import Filter from './components/Filter/Filter';
+import Modal from './components/Modal/Modal';
+import usersOperations from './redux/users/users-operations';
+import {
+  getAllUsers,
+  getLoading,
+} from './redux/users/users-selectors';
+
 import './App.css';
 
 function App() {
+
+  const dispatch = useDispatch();
+  const users = useSelector(getAllUsers);
+  const isLoading = useSelector(getLoading);
+
+  useEffect(() => {
+    dispatch(usersOperations.fetchUsers());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isLoading && <Modal isActive={isLoading} />}
+      <Container maxWidth="md">
+        {(users.length > 0 &&
+          <Filter />) || <h1>No users found...</h1>}
+        <UsersTable />
+      </Container>
+    </>
   );
 }
 
