@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
 import 'modern-normalize/modern-normalize.css';
+import "typeface-satisfy";
 import './index.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import storeObject from './redux/store';

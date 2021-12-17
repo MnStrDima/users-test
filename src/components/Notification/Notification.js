@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import notificationTransitionStyles from '../../transitionStyles/notificationTransition.module.css';
 import styles from './Notification.module.css';
 
 export default function Notification({ notificationInit, message }) {
     const [isVisible, setIsVisible] = useState(false);
+    const nodeRef = useRef(null);
 
     useEffect(() => {
         if (notificationInit) {
@@ -23,8 +24,9 @@ export default function Notification({ notificationInit, message }) {
             timeout={250}
             classNames={notificationTransitionStyles}
             unmountOnExit
+            nodeRef={nodeRef}
         >
-            <div className={styles.wrapper}>
+            <div ref={nodeRef} className={styles.wrapper}>
                 <p className={styles.message}>{message}</p>
             </div>
         </CSSTransition>

@@ -15,11 +15,14 @@ import {
     deleteUserError,
     changeFilter,
     errorRemover,
+    changeUpdatedUsers,
+    clearUpdatedUsers
 } from './users-actions';
 
 const initialState = {
     users: {
         items: [],
+        updatedItems: [],
         filter: '',
         isLoading: false,
         error: '',
@@ -30,10 +33,15 @@ const items = createReducer(initialState.users.items, {
     [fetchUsersSuccess]: (_, { payload }) => payload,
     [addUserSuccess]: (state, { payload }) => [...state, payload],
     [updateUserSuccess]: (state, { payload }) =>
-        state.forEach(user => (user.id === payload.id ? payload : user)),
+        state.map(user => (user.id === payload.id ? payload : user)),
     [deleteUserSuccess]: (state, { payload }) =>
         state.filter(({ id }) => id !== payload),
 });
+
+const updatedItems = createReducer(initialState.users.updatedItems, {
+    [changeUpdatedUsers]: (state, { payload }) => [...state, payload],
+    [clearUpdatedUsers]: (_, { payload }) => payload,
+})
 
 const filter = createReducer(initialState.users.filter, {
     [changeFilter]: (_, { payload }) => payload,
@@ -67,6 +75,7 @@ const error = createReducer(initialState.users.error, {
 
 export default combineReducers({
     items,
+    updatedItems,
     filter,
     isLoading,
     error,

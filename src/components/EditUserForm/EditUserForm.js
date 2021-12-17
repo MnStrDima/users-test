@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
@@ -22,7 +22,7 @@ const validationSchema = yup.object({
 
 export default function EditUserForm({ setIsModalActive, initialValue, setInitialValue }) {
 
-    const { id, name, email, website, company } = initialValue;
+    const { name, email, website, company } = initialValue;
     const dispatch = useDispatch();
     const [isUserExists, setIsUserExists] = useState(false);
     const users = useSelector(getAllUsers);
@@ -41,7 +41,7 @@ export default function EditUserForm({ setIsModalActive, initialValue, setInitia
         updatedUser.email = userObj.email;
         updatedUser.company.name = userObj?.company?.name;
 
-        if (users.some(({ name }) => name === userObj.name)) {
+        if (users.some(({ id, name }) => name === userObj.name)) {
             setIsUserExists(true);
             setTimeout(() => {
                 setIsUserExists(false);

@@ -6,7 +6,7 @@ import Filter from './components/Filter/Filter';
 import Modal from './components/Modal/Modal';
 import usersOperations from './redux/users/users-operations';
 import {
-  getAllUsers,
+  getUsersLength,
   getLoading,
 } from './redux/users/users-selectors';
 
@@ -15,7 +15,7 @@ import './App.css';
 function App() {
 
   const dispatch = useDispatch();
-  const users = useSelector(getAllUsers);
+  const usersQuantity = useSelector(getUsersLength);
   const isLoading = useSelector(getLoading);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function App() {
     <>
       {isLoading && <Modal isActive={isLoading} />}
       <Container maxWidth="md">
-        {(users.length > 0 &&
+        {(usersQuantity > 0 &&
           <Filter />) || <h1>No users found...</h1>}
         <UsersTable />
       </Container>

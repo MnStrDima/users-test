@@ -19,3 +19,5 @@ export const deleteUserError = createAction(types.deleteError);
 
 export const changeFilter = createAction(types.changeFilter);
 export const errorRemover = createAction(types.errorRemove);
+export const changeUpdatedUsers = createAction(types.changeUpdatedUsers);
+export const clearUpdatedUsers = createAction(types.clearUpdatedUsers);

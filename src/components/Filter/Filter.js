@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { TextField } from '@mui/material';
 import { changeFilter } from '../../redux/users/users-actions';
 import styles from './Filter.module.css';
 import { getFilter } from '../../redux/users/users-selectors';
@@ -10,16 +11,13 @@ export default function Filter() {
 
     return (
         <div className={styles.inputWrapper}>
-            <label className={styles.filterLabel}>
-                Find users by name:
-                <input
-                    className={styles.filterInput}
-                    type="text"
-                    name="name"
-                    value={initialValue}
-                    onChange={onFilterChange}
-                />
-            </label>
+            <TextField
+                sx={{ width: '100%' }}
+                id="outlined-name"
+                label="Find users by name:"
+                value={initialValue}
+                onChange={onFilterChange}
+            />
         </div>
     );
 }

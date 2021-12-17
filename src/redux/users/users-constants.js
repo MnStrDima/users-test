@@ -15,7 +15,9 @@ const updateSuccess = 'users/UpdateSuccess';
 const updateError = 'users/UpdateError';
 
 const changeFilter = 'users/ChangeFilter';
-const errorRemove = 'users/removeError;';
+const errorRemove = 'users/RemoveError;';
+const changeUpdatedUsers = 'users/ChangeUpdatedUsers';
+const clearUpdatedUsers = 'users/ClearUpdatedUsers';
 
 const types = {
     deleteError,
@@ -29,6 +31,8 @@ const types = {
     updateError,
     changeFilter,
     errorRemove,
+    changeUpdatedUsers,
+    clearUpdatedUsers,
     fetchRequest,
     fetchSuccess,
     fetchError,

@@ -13,6 +13,8 @@ import {
     deleteUserSuccess,
     deleteUserError,
     errorRemover,
+    changeUpdatedUsers,
+    clearUpdatedUsers
 } from './users-actions';
 
 const resetError = dispatch =>
@@ -22,6 +24,7 @@ axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
 const fetchUsers = () => async dispatch => {
     dispatch(fetchUsersRequest());
+    dispatch(clearUpdatedUsers([]))
 
     try {
         const { data } = await axios.get('/users');
@@ -50,6 +53,7 @@ const updateUser = userObj => async dispatch => {
     try {
         const { data } = await axios.patch(`/users/${id}`, userObj);
         console.log(data);
+        dispatch(changeUpdatedUsers(id));
         return dispatch(updateUserSuccess(data));
     } catch (error) {
         dispatch(updateUserError(error.message));
