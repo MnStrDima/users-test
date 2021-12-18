@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 import modalTransitionStyles from '../../transitionStyles/modalTransition.module.css';
 import Preloader from '../Preloader/Preloader';
 
@@ -41,3 +42,9 @@ export default function Modal({ isActive, setIsActive, children }) {
     modalRoot,
   );
 }
+
+Modal.propTypes = PropTypes.shape({
+  isActive: PropTypes.bool.isRequired,
+  setIsActive: PropTypes.func,
+  children: PropTypes.node,
+}).isRequired;

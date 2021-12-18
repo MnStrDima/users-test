@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 import { Button } from '@material-ui/core';
 import * as yup from 'yup';
+import PropTypes from 'prop-types';
 import usersOperations from '../../redux/users/users-operations';
 import styles from './UserForm.module.css';
 import Notification from '../Notification/Notification';
@@ -134,3 +135,7 @@ export default function UserForm({ setIsModalActive }) {
         </>
     );
 }
+
+UserForm.propTypes = PropTypes.shape({
+    setIsModalActive: PropTypes.func.isRequired,
+}).isRequired;

@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 import { Box, Button } from '@material-ui/core';
 import * as yup from 'yup';
-
+import PropTypes from 'prop-types';
 import styles from './EditUserForm.module.css';
 import usersOperations from '../../redux/users/users-operations';
 import Notification from '../Notification/Notification';
@@ -132,3 +132,10 @@ export default function EditUserForm({ setIsModalActive, initialValue, setInitia
         </>
     );
 }
+
+
+EditUserForm.propTypes = PropTypes.shape({
+    setIsModalActive: PropTypes.func.isRequired,
+    initialValue: PropTypes.object.isRequired,
+    setInitialValue: PropTypes.func.isRequired,
+}).isRequired;

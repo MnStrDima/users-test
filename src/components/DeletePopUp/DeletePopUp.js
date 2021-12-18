@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Box, Button } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import usersOperations from '../../redux/users/users-operations';
 import styles from './DeletePopUp.module.css'
 
@@ -48,3 +49,8 @@ const DeletePopUp = ({ setIsModalActive, id }) => {
 }
 
 export default DeletePopUp;
+
+DeletePopUp.propTypes = PropTypes.shape({
+    setIsModalActive: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
+}).isRequired;

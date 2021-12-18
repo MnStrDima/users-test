@@ -76,4 +76,8 @@ export default UsersTableItem;
 
 UsersTableItem.propTypes = PropTypes.shape({
     user: PropTypes.object.isRequired,
+    setFormInitialValues: PropTypes.func.isRequired,
+    setId: PropTypes.func.isRequired,
+    setEditModalActive: PropTypes.func.isRequired,
+    setDeleteModalActive: PropTypes.func.isRequired,
 }).isRequired;
